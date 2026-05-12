@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Plantilla para desplegar una EC2 y un S3 en github.
+
+Resources:
+  # Creación del Bucket S3
+  MiBucketS3:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "mi-proyecto-${AWS::AccountId}" # Nombre
+
+  # Creación de la Instancia EC2
+  MiInstanciaEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0440d3b780d96b29d # Amazon Linux 2023 en us-east-1
+      Tags:
+        - Key: Name
+          Value: ServidorProyectoIT
